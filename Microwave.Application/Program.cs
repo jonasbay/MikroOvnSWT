@@ -32,6 +32,7 @@ namespace Microwave.Application
 
             UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
+
             // Finish the double association
             cooker.UI = ui;
 
