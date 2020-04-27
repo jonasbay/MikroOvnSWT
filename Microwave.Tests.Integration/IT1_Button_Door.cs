@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using MicrowaveOvenClasses.Boundary;
+using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
-using MicrowaveOvenClasses.Boundary;
-using MicrowaveOvenClasses.Controllers;
+using NUnit.Framework;
 
 namespace Microwave.Tests.Integration
 {
@@ -92,5 +87,33 @@ namespace Microwave.Tests.Integration
             _startCancelButton.Press();
             _light.Received().TurnOff();
         }
+
+        // DOOR TEST // 
+        #region DOORTESTS
+        [Test] 
+        public void onDoorOpened_LightReceivedCall_TurnOn_ReadyState()
+        {
+            _door.Open();
+            _light.Received().TurnOn();
+        }
+
+        [Test]
+        public void onDoorOpened_DisplayReceivedCall_Clear_SetPower()
+        {
+            _powerButton.Press();
+            _door.Open();
+            _display.Received().Clear();
+        }
+
+        [Test]
+        public void onDoorOpened_MyCookerReceivedCall_Stop_Cooking()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _door.Open();
+            _cookController.Received().Stop();
+        }
+        #endregion
     }
 }
