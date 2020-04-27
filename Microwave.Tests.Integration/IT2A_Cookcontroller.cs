@@ -71,7 +71,7 @@ namespace Microwave.Tests.Integration
             _display.Received().ShowTime(1, 0);
         }
 
-        [Test] // Indsæt flere parameter her. Fx time er større end 1 og power er højere.
+        [Test] // Indsæt flere parameter her. Fx time er større end 1 min og power er højere.
         public void OnTimerExpired_UI_Received_CookingIsDone()
         {
             _powerButton.Press();
