@@ -71,11 +71,20 @@ namespace Microwave.Tests.Integration
             _display.Received().ShowTime(1, 0);
         }
 
-        [Test] // Indsæt flere parameter her. Fx time er større end 1 min og power er højere.
-        public void OnTimerExpired_UI_Received_CookingIsDone()
+        [TestCase(1)]
+        [TestCase(9)]
+        public void OnTimerExpired_UI_Received_CookingIsDone(int presses)
         {
-            _powerButton.Press();
-            _timeButton.Press();
+            for (int i = 0; i < presses; i++)
+            {
+                _powerButton.Press();
+
+            }
+            for (int i = 0; i < presses; i++)
+            {
+                _timeButton.Press();
+            }
+
             _startCancelButton.Press();
 
             _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
