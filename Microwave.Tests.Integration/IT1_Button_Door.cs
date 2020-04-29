@@ -35,7 +35,8 @@ namespace Microwave.Tests.Integration
             _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
         }
 
-
+        //Button tests
+        #region Button tests
         [TestCase(1, 50)] //Test READY state
         [TestCase(2, 100)] //Test SETPOWER state
         public void powerBtn_Pressed_DisplayReceivedCall(int presses, int powerResult)
@@ -87,6 +88,7 @@ namespace Microwave.Tests.Integration
             _startCancelButton.Press();
             _light.Received().TurnOff();
         }
+        #endregion
 
         // DOOR TEST // 
         #region DOORTESTS
